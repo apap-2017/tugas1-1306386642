@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Keluarga</title>
+<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous"></link>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
+		<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
+		<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"></link>
+	<script
+		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+	<h2 align="center">Preview</h2>
+	<hr />
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="col-sm-5">
+				<h3 th:text="'Lihat Data Keluarga - '+${keluarga.nomor_kk}">NIK</h3>
+				<table class="table table-bordered" style="text-align: center"
+					th:each="keluarga,iterationStatus:${keluarga}">
+					<tr class="active">
+						<td>NKK</td>
+						<td th:text="${keluarga.nomor_kk}">alamat</td>
+					</tr>
+					<tr>
+						<td>Alamat</td>
+						<td th:text="${keluarga.alamat}">alamat</td>
+					</tr>
+					<tr class="active">
+						<td>RT/RW</td>
+						<td th:text="${keluarga.rt}+'/'+${keluarga.rt}">rtrw</td>
+					</tr>
+					<tr>
+						<td>Kelurahan/Desa</td>
+						<td th:text="${keluarga.NamaKelurahan}">klurahan</td>
+					</tr>
+					<tr class="active">
+						<td>Kecamatan</td>
+						<td th:text="${keluarga.NamaKecamatan}">kcmtn</td>
+					</tr>
+					<tr>
+						<td>Kota</td>
+						<td th:text="${keluarga.NamaKota}">kota</td>
+					</tr>
+				</table>
+			</div>
+
+			<table class="table table-bordered" id="mytable">
+				<tr style="text-align: center" class="active">
+					<td>No</td>
+					<td>Nama Lengkap</td>
+					<td>NIK</td>
+					<td>Jenis Kelamin</td>
+					<td>Tempat Lahir</td>
+					<td>Tanggal Lahir</td>
+					<td>Agama</td>
+					<td>Pekerjaan</td>
+					<td>Status Perkawinan</td>
+					<td>Status Dalam Keluarga</td>
+					<td>Kewarganegaraan</td>
+				</tr>
+				<tr style="text-align: center"
+					th:each="penduduk,iterationStatus:${penduduk}">
+					<td th:text="${iterationStatus.count}">No</td>
+					<td th:text="${penduduk.nama}">No</td>
+					<td th:text="${penduduk.nik}">Nik</td>
+					<td th:switch="${penduduk.jenis_kelamin}">
+						<div th:case="1">Wanita</div>
+						<div th:case="0">Pria</div>
+					</td>
+					<td th:text="${penduduk.tempat_lahir}">tmpt</td>
+					<td th:text="${penduduk.tanggal_lahir}">tnggl</td>
+					<td th:text="${penduduk.agama}">agama</td>
+					<td th:text="${penduduk.pekerjaan}">pkrjaan</td>
+					<td th:text="${penduduk.status_perkawinan}">pkrjaan</td>
+					<td th:text="${penduduk.status_dalam_keluarga}">pkrjaan</td>
+					<td th:switch="${penduduk.is_wni}">
+						<div th:case="1">WNI</div>
+						<div th:case="0">Warga Asing</div>
+					</td>
+				</tr>
+			</table>
+			<br />
+			<button style="margin: auto" class="btn btn-primary"
+				onclick="Backfunction()">back</button>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$('#mytable').DataTable();
+			console.log("haha");
+		});
+		function Backfunction() {
+			location.href = "/keluarga/home"
+		}
+	</script>
+</body>
+
+</html>

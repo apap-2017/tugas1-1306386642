@@ -1,0 +1,99 @@
+
+<!DOCTYPE   html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>view penduduk</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"/>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+<script
+	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+	<h2 align="center">Preview</h2>
+	<hr/>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		<h3 th:text="'Lihat Data Penduduk - '+${penduduk.nik}">NIK</h3>
+			<table class="table table-bordered" style="text-align:center" th:each="penduduk,iterationStatus:${penduduk}">
+				<tr class="active">
+					<th>NIK</th>
+					<th th:text="${penduduk.nik}"></th>
+				</tr>
+				<tr>
+					<th>Nama</th>
+					<th th:text="${penduduk.nama}"></th>
+				</tr>
+				<tr class="active">
+					<th>Tempat/Tanggal Lahir</th>
+					<th th:text="${penduduk.tempat_lahir}+', '+${penduduk.tanggal_lahir}"></th>
+				</tr>
+				<tr>
+					<th>Alamat</th>
+					<th th:text="${penduduk.Alamat}"></th>
+				</tr>
+				<tr class="active">
+					<th>RT/RW</th>
+					<th th:text="${penduduk.RT}+'/'+${penduduk.RW}"></th>
+				</tr>
+				<tr>
+					<th>Kelurahan/Desa</th>
+					<th th:text="${penduduk.NamaKelurahan}"></th>
+				</tr>
+				<tr>
+					<th>Kecamatan</th>
+					<th th:text="${penduduk.NamaKecamatan}"></th>
+				</tr>
+				<tr class="active">
+					<th>Kota</th>
+					<th th:text="${penduduk.NamaKota}"></th>
+				</tr>
+				<tr>
+					<th>Golongan Darah</th>
+					<th th:text="${penduduk.golongan_darah}"></th>
+				</tr>
+				<tr>
+					<th>Agama</th>
+					<th th:text="${penduduk.agama}"></th>
+				</tr>
+				<tr>
+					<th>Status Perkawinan</th>
+					<th th:text="${penduduk.status_perkawinan}"></th>
+				</tr>
+				<tr class="active">
+					<th>Pekerjaan</th>
+					<th th:text="${penduduk.pekerjaan}"></th>
+				</tr>
+				<tr>
+					<th>Kewarganegaraan</th>
+					<th th:if="${penduduk.is_wni} == 1" th:text='WNI'></th>
+					<th th:if="${penduduk.is_wni} == 0" th:text='WNA'></th>
+				</tr>
+				<tr class="active">
+					<th>Status Kematian</th>
+					<th th:if="${penduduk.is_wafat} == 0" th:text='Hidup'></th>
+					<th th:if="${penduduk.is_wafat} == 1" th:text='Wafat'></th>
+				</tr>
+			</table>
+			<button style="margin: auto" class="btn btn-primary"
+				onclick="Backfunction()">back</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+function Backfunction() {
+    location.href = "/penduduk/home"
+}
+</script>
+</html>
