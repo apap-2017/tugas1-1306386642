@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,9 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.model.KeluargaModel;
 import com.example.model.PendudukModel;
 import com.example.service.PendudukService;
-
 
 @Controller
 public class PendudukController {
@@ -59,7 +61,7 @@ public class PendudukController {
 	public String tambahPenduduk(@Valid @ModelAttribute PendudukModel penduduk, Model model) {
 
 		PendudukModel camat = pendudukService.kodeCamat(penduduk.getId_keluarga());
-		
+
 		// 6 digit kode kecamatan
 		String kodeNIK = camat.getKodeKecamatan().substring(0, 6);
 		System.out.println(kodeNIK);
@@ -80,7 +82,7 @@ public class PendudukController {
 		} else {
 			kodeNIK += tanggalLahir;
 		}
-		
+
 		// 4 digit kode akhir NIK
 		PendudukModel kodeTerakhir = pendudukService.lastNIK();
 		System.out.println(kodeTerakhir.getTempat_lahir());
@@ -114,19 +116,19 @@ public class PendudukController {
 		model.addAttribute("penduduk", penduduk);
 		return "penduduk/addSuccess";
 	}
-	
+
 	@GetMapping("/penduduk/ubah/{nik}")
 	public String getPenduduk(@Valid @PathVariable String nik, Model model) {
 		PendudukModel penduduk = pendudukService.getPenduduk(nik);
 		model.addAttribute("penduduk", penduduk);
 		return "penduduk/form-update";
 	}
-	
+
 	@PostMapping("penduduk/ubah/submit")
 	public String updatePenduduk(@Valid @ModelAttribute PendudukModel penduduk, Model model) {
-		
+
 		PendudukModel camat = pendudukService.kodeCamat(penduduk.getId_keluarga());
-		
+
 		// 6 digit kode kecamatan
 		String kodeNIK = camat.getKodeKecamatan().substring(0, 6);
 		System.out.println(kodeNIK);
@@ -147,7 +149,7 @@ public class PendudukController {
 		} else {
 			kodeNIK += tanggalLahir;
 		}
-		
+
 		// 4 digit kode akhir NIK
 		PendudukModel kodeTerakhir = pendudukService.lastNIK();
 		System.out.println(kodeTerakhir.getTempat_lahir());
@@ -175,31 +177,47 @@ public class PendudukController {
 		} else {
 			kodeNIK += "0001";
 		}
-		
+
 		// nik lama
 		model.addAttribute("nik", penduduk.getNik());
-	
-		
+
 		// nik baru
 		penduduk.setNiklama(penduduk.getNik());
 		penduduk.setNik(kodeNIK);
 		System.out.println("nik baru " + kodeNIK);
-		
+
 		pendudukService.updatePenduduk(penduduk);
 		return "penduduk/successUpdate";
 	}
-	
-	@PostMapping("penduduk/mati")
-	public String updateWafat(@Valid @RequestParam(value = "npm") String npm, Model model) {
-		
-		PendudukModel wafat = pendudukService.wafat(npm);
-		model.addAttribute("wafat", wafat);
-		
-		
-		return "penduduk/wafat";
-		
-		
-	}
-	
 
+	@RequestMapping("penduduk/npm")
+	public String is_wafat(@Valid @RequestParam(value = "nik", required = false) String nik, Model model) {
+		pendudukService.wafat(nik);
+		model.addAttribute("nik", nik);
+		// mendapatkan attribut penduduk
+		PendudukModel getPenduduk = pendudukService.getPenduduk(nik);
+		
+		// mendapatkan nomor_kk dan is_tidak_berlaku pada keluarga
+		PendudukModel nkk = pendudukService.jumlahKeluarga(getPenduduk.getId_keluarga());
+
+		// membuat daftar is_wafat
+		List<PendudukModel> berlaku = pendudukService.cekPenduduk(nkk.getNKK());
+		ArrayList<Integer> intList = new ArrayList<>();
+		for (int i = 0; i < berlaku.size(); i++) {
+			System.out.println("nama = " + berlaku.get(i));
+			System.out.println("wafat = " + berlaku.get(i).getIs_wafat());
+			intList.add(berlaku.get(i).getIs_wafat());
+		}
+		for (int i = 0; i < intList.size(); i++) {
+			System.out.println("data = " + intList.get(i));
+		}
+		if (intList.contains(0)) {
+			nkk.setTidakBerlaku(0);
+		} else {
+			pendudukService.is_tidak_berlaku(nkk.getNKK());
+		}
+		System.out.println("tidak berlaku = " + nkk.getTidakBerlaku());
+		return "penduduk/wafat";
+
+	}
 }

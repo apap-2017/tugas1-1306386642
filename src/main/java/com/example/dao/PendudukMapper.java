@@ -1,11 +1,14 @@
 package com.example.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.example.model.KeluargaModel;
 import com.example.model.PendudukModel;
 
 @Mapper
@@ -42,6 +45,15 @@ public interface PendudukMapper {
 	void updatePenduduk(PendudukModel penduduk);
 	
 	@Update("UPDATE penduduk SET is_wafat = 1 where nik = #{nik}")
-	PendudukModel wafat(@Param("nik") String nik);
+	void wafat(@Param("nik") String nik);
+	
+	@Update("UPDATE keluarga SET is_tidak_berlaku = 1 where nomor_kk = #{nomor_kk}")
+	void is_tidak_berlaku(@Param("nomor_kk") String nomor_kk);
+	
+	@Select("select DISTINCT keluarga.nomor_kk as NKK, keluarga.is_tidak_berlaku as TidakBerlaku from penduduk join keluarga on penduduk.id_keluarga = keluarga.id where penduduk.id_keluarga = #{id_keluarga}")
+	PendudukModel jumlahKeluarga(@Param("id_keluarga") Long id_keluarga);
+	
+	@Select("SELECT id_keluarga, nama, is_wafat FROM penduduk join keluarga on penduduk.id_keluarga = keluarga.id WHERE keluarga.nomor_kk = #{nomor_kk}")
+	List<PendudukModel> cekPenduduk(@Param("nomor_kk") String nomor_kk);
 
 }

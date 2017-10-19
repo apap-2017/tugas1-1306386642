@@ -31,5 +31,7 @@ public class PendudukModel {
 	private String RT;
 	private String RW;
 	private String KodeKecamatan;
+	private String NKK;
+	private Integer TidakBerlaku;
 	
 }

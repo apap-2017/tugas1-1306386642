@@ -25,5 +25,6 @@ public class KeluargaModel {
 	private String NamaKecamatan;
 	private String NamaKota;	
 	private String KodeKecamatan;
+	private Integer Wafat;
 
 }
