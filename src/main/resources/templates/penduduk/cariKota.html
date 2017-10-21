@@ -2,81 +2,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-
 <title>Cari Penduduk</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
-<script
-	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<div th:replace="fragments/fragment  :: CSS"></div>
 </head>
-
 <body>
-
 	<h3 align="center">Cari Penduduk</h3>
 	<hr />
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<form action="/penduduk/cari" method="get" th:object="${penduduk}">
-			
-			<input th:if="${idKota != null}" id="idKota" name="idKota" th:value="${idKota}" type="hidden"></input>
-			<input th:if="${idKecamatan != null}" id="idKecamatan" name="idKecamatan" th:value="${idKecamatan}" type="hidden"></input>
-			<input th:if="${idKelurahan != null}" id="idKelurahan" name="idKelurahan" th:value="${idKelurahan}" type="hidden"></input>
+
+				<input th:if="${idKota != null}" id="idKota" name="idKota"
+					th:value="${idKota}" type="hidden"></input> <input
+					th:if="${idKecamatan != null}" id="idKecamatan" name="idKecamatan"
+					th:value="${idKecamatan}" type="hidden"></input> <input
+					th:if="${idKelurahan != null}" id="idKelurahan" name="idKelurahan"
+					th:value="${idKelurahan}" type="hidden"></input>
 				<div class="form-group">
 					<label for="kota">Kota/Kabupaten</label> <select
-						class="form-control" name="idKota" id="idKota" th:disabled="${idKota != null}">
+						class="form-control" name="idKota" id="idKota"
+						th:disabled="${idKota != null}">
 						<option value="">--Pilih Kota</option>
-						<option th:each="ListKota : ${kota}" 
-						th:value="${ListKota.idKota}" 
-						th:text="${ListKota.NamaKota}"
-						th:selected="${idKota == ListKota.idKota}" 
-						>
-						</option>
+						<option th:each="ListKota : ${kota}" th:value="${ListKota.idKota}"
+							th:text="${ListKota.NamaKota}"
+							th:selected="${idKota == ListKota.idKota}"></option>
 					</select>
 				</div>
-			<div class="form-group" th:if="${idKota != null}">
+				<div class="form-group" th:if="${idKota != null}">
 					<label for="kecamatan">Kecamatan</label> <select
-						class="form-control" name="idKecamatan" id="kecamatan" th:disabled="${idKecamatan != null}">
+						class="form-control" name="idKecamatan" id="kecamatan"
+						th:disabled="${idKecamatan != null}">
 						<option value="">--Pilih Kecamatan</option>
-						<option th:each="ListKecamatan : ${kecamatan}" 
-						th:value="${ListKecamatan.idKecamatan}" 
-						th:text="${ListKecamatan.NamaKecamatan}"
-						th:selected="${idKecamatan == ListKecamatan.idKecamatan}" 
-						>
+						<option th:each="ListKecamatan : ${kecamatan}"
+							th:value="${ListKecamatan.idKecamatan}"
+							th:text="${ListKecamatan.NamaKecamatan}"
+							th:selected="${idKecamatan == ListKecamatan.idKecamatan}">
 						</option>
 					</select>
 				</div>
 				<div class="form-group" th:if="${idKecamatan != null}">
-					<label for="isWNI">Kelurahan</label> <select
-						class="form-control" name="idKelurahan" th:disabled="${idKelurahan != null}">
+					<label for="isWNI">Kelurahan</label> <select class="form-control"
+						name="idKelurahan" th:disabled="${idKelurahan != null}">
 						<option value="">--Pilih Kelurahan</option>
-						<option th:each="ListKelurahan : ${kelurahan}" 
-						th:value="${ListKelurahan.idKelurahan}" 
-						th:text="${ListKelurahan.NamaKelurahan}"
-						th:selected="${idKelurahan == ListKelurahan.idKelurahan}" 
-						>
+						<option th:each="ListKelurahan : ${kelurahan}"
+							th:value="${ListKelurahan.idKelurahan}"
+							th:text="${ListKelurahan.NamaKelurahan}"
+							th:selected="${idKelurahan == ListKelurahan.idKelurahan}">
 						</option>
-						
+
 					</select>
 				</div>
-				<button class="btn btn-primary" type="submit"
-					value="save">Lihat</button>
+				<button class="btn btn-primary" type="submit" value="save">Lihat</button>
 			</form>
 		</div>
 	</div>
-	
+
 </body>
 </html>
 

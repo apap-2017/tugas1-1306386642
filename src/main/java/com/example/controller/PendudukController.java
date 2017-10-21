@@ -53,12 +53,13 @@ public class PendudukController {
 
 		if (idKota != null && idKecamatan != null && idKelurahan != null) {
 			List<PendudukModel> viewPenduduk = pendudukService.listPenduduk(idKelurahan);
+			model.addAttribute("penduduk", viewPenduduk);
+
 			PendudukModel muda = pendudukService.muda(idKelurahan);
 			model.addAttribute("muda", muda);
 
 			PendudukModel tua = pendudukService.tua(idKelurahan);
 			model.addAttribute("tua", tua);
-			model.addAttribute("penduduk", viewPenduduk);
 			return "penduduk/view";
 		}
 		return "penduduk/cariKota";
@@ -132,7 +133,7 @@ public class PendudukController {
 			} else {
 				kodeNIK += "0001";
 			}
-		
+
 			penduduk.setNik(kodeNIK);
 			pendudukService.addPenduduk(penduduk);
 			model.addAttribute("penduduk", penduduk);
@@ -215,7 +216,7 @@ public class PendudukController {
 	public String is_wafat(@Valid @RequestParam(value = "nik", required = false) String nik, Model model) {
 		pendudukService.wafat(nik);
 		model.addAttribute("nik", nik);
-		
+
 		// mendapatkan attribut penduduk
 		PendudukModel getPenduduk = pendudukService.getPenduduk(nik);
 
@@ -233,7 +234,7 @@ public class PendudukController {
 		} else {
 			pendudukService.is_tidak_berlaku(nkk.getNKK());
 		}
-		return "redirect:/penduduk/view?nik="+nik;
+		return "redirect:/penduduk/view?nik=" + nik;
 	}
 
 }

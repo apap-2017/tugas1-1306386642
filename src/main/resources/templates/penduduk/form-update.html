@@ -5,26 +5,9 @@
 
 <title>Ubah Penduduk</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
-<script
-	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<div th:replace="fragments/fragment  :: CSS"></div>
 </head>
-
 <body>
-
 	<h3 align="center">Form Ubah Penduduk</h3>
 	<hr />
 	<div class="row">
@@ -49,7 +32,7 @@
 				</div>
 				<div class="form-group">
 					<label for="golonganDarah">Golongan Darah</label> <select
-						class="form-control" name="golongan_darah" required="required" >
+						class="form-control" name="golongan_darah" required="required">
 						<option value="">--Pilih Golongan Darah</option>
 						<option value="'A-'" th:selected="*{golongan_darah == 'A-'}">A-</option>
 						<option value="'A+'" th:selected="*{golongan_darah == 'A+'}">A+</option>
@@ -62,7 +45,7 @@
 				</div>
 				<div class="form-group">
 					<label for="jenisKelamin">Jenis Kelamin</label> <select
-						class="form-control" name="jenis_kelamin" required="required" >
+						class="form-control" name="jenis_kelamin" required="required">
 						<option value="">--Pilih Jenis Kelamin</option>
 						<option value="1" th:selected="*{jenis_kelamin == 1}">Wanita</option>
 						<option value="0" th:selected="*{jenis_kelamin == 0}">Pria</option>
@@ -80,7 +63,7 @@
 				</div>
 				<div class="form-group">
 					<label for="isWNI">Kewarganegaraan</label> <select
-						class="form-control" name="is_wni" required="required" >
+						class="form-control" name="is_wni" required="required">
 						<option value="'-'">--Pilih Status Kewarganegaraan</option>
 						<option value="1" th:selected="*{is_wni == 1}">WNI</option>
 						<option value="0" th:selected="*{is_wni == 0}">WNA</option>
@@ -88,7 +71,7 @@
 				</div>
 				<div class="form-group">
 					<label for="isWafat">Status Kematian</label> <select
-						class="form-control" name="is_wafat" required="required" >
+						class="form-control" name="is_wafat" required="required">
 						<option value="'-'">--Pilih Status Kematian</option>
 						<option value="0" th:selected="*{is_wafat == 0}">Hidup</option>
 						<option value="1" th:selected="*{is_wafat == 1}">Wafat</option>
@@ -96,7 +79,7 @@
 				</div>
 				<div class="form-group">
 					<label for="statusPerkawinan">Status Perkawinan</label> <select
-						class="form-control" name="status_perkawinan" required="required" >
+						class="form-control" name="status_perkawinan" required="required">
 						<option value="'-'">--Pilih Status Perkawinan</option>
 						<option value="Belum Kawin"
 							th:selected="*{status_perkawinan == 'Belum Kawin'}">Belum

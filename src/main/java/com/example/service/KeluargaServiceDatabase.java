@@ -10,13 +10,11 @@ import com.example.model.KeluargaModel;
 import com.example.model.PendudukModel;
 
 @Service
-public class KeluargaServiceDatabase implements KeluargaService{
+public class KeluargaServiceDatabase implements KeluargaService {
 
-	
 	@Autowired
 	KeluargaMapper keluargaMapper;
-	
-	
+
 	@Override
 	public KeluargaModel viewKeluarga(String nomor_kk) {
 		// TODO Auto-generated method stub
@@ -57,7 +55,7 @@ public class KeluargaServiceDatabase implements KeluargaService{
 	public void updateKeluarga(KeluargaModel keluarga) {
 		// TODO Auto-generated method stub
 		keluargaMapper.updateKeluarga(keluarga);
-		
+
 	}
 
 }

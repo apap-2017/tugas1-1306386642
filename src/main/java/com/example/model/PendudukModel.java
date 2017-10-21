@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PendudukModel {
-	
+
 	private Long id;
 	private Long id_keluarga;
 	private String nik;

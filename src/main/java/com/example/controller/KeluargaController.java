@@ -32,7 +32,7 @@ public class KeluargaController {
 
 	@RequestMapping("/keluarga/home")
 	public String homeKeluarga() {
-		
+
 		return "keluarga/home";
 	}
 
@@ -40,7 +40,7 @@ public class KeluargaController {
 	public String viewPenduduk(@Valid @RequestParam(value = "nomor_kk", required = false) String nomor_kk,
 			Model model) {
 		KeluargaModel viewKeluarga = keluargaService.viewKeluarga(nomor_kk);
-		
+
 		if (nomor_kk.isEmpty()) {
 			return homeKeluarga();
 		} else {
@@ -62,19 +62,24 @@ public class KeluargaController {
 	}
 
 	@RequestMapping("/keluarga/tambah")
-	public String tambahPenduduk(@Valid @ModelAttribute KeluargaModel keluarga, Model model, RedirectAttributes redirect) {
-		
+	public String tambahPenduduk(@Valid @ModelAttribute KeluargaModel keluarga, Model model,
+			RedirectAttributes redirect) {
+
 		try {
-		KeluargaModel nomorID = keluargaService.nomorID(keluarga.getNamaKelurahan(), keluarga.getNamaKecamatan(),
-				keluarga.getNamaKota());
-		// 6 digit kode kecamatan dan mendapatkan idKelurahan
-		String NomorNKK = "";
-		if (keluarga.getNamaKelurahan().equals(nomorID.getNamaKelurahan())) {
-			if (keluarga.getNamaKecamatan().equals(nomorID.getNamaKecamatan())) {
-				if (keluarga.getNamaKota().equals(nomorID.getNamaKota())) {
-					NomorNKK = nomorID.getKodeKecamatan().substring(0, 6);
-					Long idKelurahan = nomorID.getIdKelurahan();
-					keluarga.setId_kelurahan(idKelurahan);
+			KeluargaModel nomorID = keluargaService.nomorID(keluarga.getNamaKelurahan(), keluarga.getNamaKecamatan(),
+					keluarga.getNamaKota());
+			// 6 digit kode kecamatan dan mendapatkan idKelurahan
+			String NomorNKK = "";
+			if (keluarga.getNamaKelurahan().equals(nomorID.getNamaKelurahan())) {
+				if (keluarga.getNamaKecamatan().equals(nomorID.getNamaKecamatan())) {
+					if (keluarga.getNamaKota().equals(nomorID.getNamaKota())) {
+						NomorNKK = nomorID.getKodeKecamatan().substring(0, 6);
+						Long idKelurahan = nomorID.getIdKelurahan();
+						keluarga.setId_kelurahan(idKelurahan);
+					} else {
+						System.out.println("tidak cocok");
+					}
+
 				} else {
 					System.out.println("tidak cocok");
 				}
@@ -83,67 +88,66 @@ public class KeluargaController {
 				System.out.println("tidak cocok");
 			}
 
-		} else {
-			System.out.println("tidak cocok");
-		}
-		
-		// 6 digit tanggal
-		Date date = Calendar.getInstance().getTime();
-		DateFormat formatter = new SimpleDateFormat("ddMMyy");
-		String today = formatter.format(date);
-		NomorNKK += today;
+			// 6 digit tanggal
+			Date date = Calendar.getInstance().getTime();
+			DateFormat formatter = new SimpleDateFormat("ddMMyy");
+			String today = formatter.format(date);
+			NomorNKK += today;
 
-		KeluargaModel lastkeluarga = keluargaService.lastKeluarga();
+			KeluargaModel lastkeluarga = keluargaService.lastKeluarga();
 
-		// 4 digit terakhir
-		if (keluarga.getAlamat().equals(lastkeluarga.getAlamat())) {
-			if (today.equals(lastkeluarga.getNomor_kk().substring(6, 12))) {
-				String nilai = lastkeluarga.getNomor_kk().substring(12, 16);
-				Integer value = Integer.parseInt(nilai);
-				value += 1;
-				String Nomor = new DecimalFormat("0000").format(value);
-				NomorNKK += Nomor;
+			// 4 digit terakhir
+			if (keluarga.getAlamat().equals(lastkeluarga.getAlamat())) {
+				if (today.equals(lastkeluarga.getNomor_kk().substring(6, 12))) {
+					String nilai = lastkeluarga.getNomor_kk().substring(12, 16);
+					Integer value = Integer.parseInt(nilai);
+					value += 1;
+					String Nomor = new DecimalFormat("0000").format(value);
+					NomorNKK += Nomor;
+				} else {
+					NomorNKK += "0001";
+				}
+
 			} else {
 				NomorNKK += "0001";
 			}
 
-		} else {
-			NomorNKK += "0001";
-		}
+			keluarga.setNomor_kk(NomorNKK);
+			model.addAttribute("keluarga", keluarga);
+			keluargaService.addKeluarga(keluarga);
 
-		keluarga.setNomor_kk(NomorNKK);
-		model.addAttribute("keluarga", keluarga);
-		keluargaService.addKeluarga(keluarga);
-
-		return "keluarga/addSuccess";
+			return "keluarga/addSuccess";
 		} catch (NullPointerException e) {
 			return addKeluarga();
 		}
 
 	}
-	
-	
+
 	@GetMapping("keluarga/ubah/{nkk}")
 	public String getKeluarga(@Valid @PathVariable String nkk, Model model) {
 		KeluargaModel keluarga = keluargaService.getKeluarga(nkk);
 		model.addAttribute("keluarga", keluarga);
 		return "keluarga/form-update";
 	}
-	
+
 	@PostMapping("keluarga/ubah/submit")
 	public String updateKeluarga(@Valid @ModelAttribute KeluargaModel keluarga, Model model) {
-		
+
 		try {
-		KeluargaModel nomorID = keluargaService.nomorID(keluarga.getNamaKelurahan(), keluarga.getNamaKecamatan(),
-				keluarga.getNamaKota());
-		// pengecekan id kelurahan
-		String NomorNKK = "";
-		if (keluarga.getNamaKelurahan().equals(nomorID.getNamaKelurahan())) {
-			if (keluarga.getNamaKecamatan().equals(nomorID.getNamaKecamatan())) {
-				if (keluarga.getNamaKota().equals(nomorID.getNamaKota())) {
-					NomorNKK = nomorID.getKodeKecamatan().substring(0, 6);
-					Long idKelurahan = nomorID.getIdKelurahan();
-					keluarga.setId_kelurahan(idKelurahan);
+			KeluargaModel nomorID = keluargaService.nomorID(keluarga.getNamaKelurahan(), keluarga.getNamaKecamatan(),
+					keluarga.getNamaKota());
+			// pengecekan id kelurahan
+			String NomorNKK = "";
+			if (keluarga.getNamaKelurahan().equals(nomorID.getNamaKelurahan())) {
+				if (keluarga.getNamaKecamatan().equals(nomorID.getNamaKecamatan())) {
+					if (keluarga.getNamaKota().equals(nomorID.getNamaKota())) {
+						NomorNKK = nomorID.getKodeKecamatan().substring(0, 6);
+						Long idKelurahan = nomorID.getIdKelurahan();
+						keluarga.setId_kelurahan(idKelurahan);
+					} else {
+						System.out.println("tidak cocok");
+					}
+
 				} else {
 					System.out.println("tidak cocok");
 				}
@@ -152,42 +156,38 @@ public class KeluargaController {
 				System.out.println("tidak cocok");
 			}
 
-		} else {
-			System.out.println("tidak cocok");
-		}
-		
-		// 6 digit tanggal input
-		Date date = Calendar.getInstance().getTime();
-		DateFormat formatter = new SimpleDateFormat("ddMMyy");
-		String today = formatter.format(date);
-		NomorNKK += today;
+			// 6 digit tanggal input
+			Date date = Calendar.getInstance().getTime();
+			DateFormat formatter = new SimpleDateFormat("ddMMyy");
+			String today = formatter.format(date);
+			NomorNKK += today;
 
-		KeluargaModel lastkeluarga = keluargaService.lastKeluarga();
-		// 4 digit terakhir
-		if (keluarga.getAlamat().equals(lastkeluarga.getAlamat())) {
-			if (today.equals(lastkeluarga.getNomor_kk().substring(6, 12))) {
-				String nilai = lastkeluarga.getNomor_kk().substring(12, 16);
-				Integer value = Integer.parseInt(nilai);
-				value += 1;
-				String Nomor = new DecimalFormat("0000").format(value);
-				NomorNKK += Nomor;
+			KeluargaModel lastkeluarga = keluargaService.lastKeluarga();
+			// 4 digit terakhir
+			if (keluarga.getAlamat().equals(lastkeluarga.getAlamat())) {
+				if (today.equals(lastkeluarga.getNomor_kk().substring(6, 12))) {
+					String nilai = lastkeluarga.getNomor_kk().substring(12, 16);
+					Integer value = Integer.parseInt(nilai);
+					value += 1;
+					String Nomor = new DecimalFormat("0000").format(value);
+					NomorNKK += Nomor;
+				} else {
+					NomorNKK += "0001";
+				}
+
 			} else {
 				NomorNKK += "0001";
 			}
 
-		} else {
-			NomorNKK += "0001";
-		}
-		
-		// transfer nkk lama
-		keluarga.setNomor_kklama(keluarga.getNomor_kk());
-		model.addAttribute("nomor_kk", keluarga.getNomor_kklama());
-		
-		// pembuatan nkk baru
-		keluarga.setNomor_kk(NomorNKK);
-	
-		keluargaService.updateKeluarga(keluarga);
-		return "keluarga/successUpdate";
+			// transfer nkk lama
+			keluarga.setNomor_kklama(keluarga.getNomor_kk());
+			model.addAttribute("nomor_kk", keluarga.getNomor_kklama());
+
+			// pembuatan nkk baru
+			keluarga.setNomor_kk(NomorNKK);
+
+			keluargaService.updateKeluarga(keluarga);
+			return "keluarga/successUpdate";
 		} catch (NullPointerException e) {
 			return "penduduk/form-update";
 		}

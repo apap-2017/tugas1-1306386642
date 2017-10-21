@@ -16,7 +16,7 @@ public class PendudukServiceDatabase implements PendudukService {
 
 	@Autowired
 	PendudukMapper pendudukMapper;
-	
+
 	@Override
 	public PendudukModel detailpenduduk(String nik) {
 		// TODO Auto-generated method stub
@@ -28,7 +28,7 @@ public class PendudukServiceDatabase implements PendudukService {
 	public void addPenduduk(PendudukModel penduduk) {
 		// TODO Auto-generated method stub
 		pendudukMapper.addPenduduk(penduduk);
-		
+
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class PendudukServiceDatabase implements PendudukService {
 	public void updatePenduduk(PendudukModel penduduk) {
 		// TODO Auto-generated method stub
 		pendudukMapper.updatePenduduk(penduduk);
-		
+
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class PendudukServiceDatabase implements PendudukService {
 	public void is_tidak_berlaku(String nomor_kk) {
 		// TODO Auto-generated method stub
 		pendudukMapper.is_tidak_berlaku(nomor_kk);
-		
+
 	}
 
 	@Override

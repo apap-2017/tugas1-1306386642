@@ -2,67 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>View</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous"></link>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></link>
-<script
-	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<div th:replace="fragments/fragment  :: CSS"></div>
 </head>
 <body>
 	<h2 align="center">View</h2>
 	<hr />
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<div class="col-sm-5" style="display:inline-block" >
-				
-					<h3 style="text-align: center">Penduduk Termuda</h3>
-					<table class="table table-bordered" style="text-align: center">
-						<tr class="active">
-							<td>Nik</td>
-							<td th:text="${muda.nik}">nik</td>
-						</tr>
-						<tr>
-							<td>Nama</td>
-							<td th:text="${muda.nama}">nama</td>
-						</tr>
-						<tr class="active">
-							<td>Tanggal Lahir</td>
-							<td th:text="${muda.tanggal_lahir}">tanggalLahir</td>
-						</tr>
-						<tr>
-							<td>Umur</td>
-							<td th:text="${muda.umur}">umur</td>
-						</tr>
-					</table>
-					</div>
-				<div class="col-sm-5" style="float:right" >
-					<h3 style="text-align: center">Penduduk Tertua</h3>
-					<table class="table table-bordered" style="text-align: center">
-						<tr class="active">
-							<td>Nik</td>
-							<td th:text="${tua.nik}">nik</td>
-						</tr>
-						<tr>
-							<td>Nama</td>
-							<td th:text="${tua.nama}">nama</td>
-						</tr>
-						<tr class="active">
-							<td>Tanggal Lahir</td>
-							<td th:text="${tua.tanggal_lahir}">tanggalLahir</td>
-						</tr>
-						<tr>
-							<td>Umur</td>
-							<td th:text="${tua.umur}">umur</td>
-						</tr>
-					</table>
-				</div>
+			<div class="col-sm-5" style="display: inline-block">
+
+				<h3 style="text-align: center">Penduduk Termuda</h3>
+				<table class="table table-bordered" style="text-align: center">
+					<tr class="active">
+						<td>Nik</td>
+						<td th:text="${muda.nik}">nik</td>
+					</tr>
+					<tr>
+						<td>Nama</td>
+						<td th:text="${muda.nama}">nama</td>
+					</tr>
+					<tr class="active">
+						<td>Tanggal Lahir</td>
+						<td th:text="${muda.tanggal_lahir}">tanggalLahir</td>
+					</tr>
+					<tr>
+						<td>Umur</td>
+						<td th:text="${muda.umur}">umur</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-sm-5" style="float: right">
+				<h3 style="text-align: center">Penduduk Tertua</h3>
+				<table class="table table-bordered" style="text-align: center">
+					<tr class="active">
+						<td>Nik</td>
+						<td th:text="${tua.nik}">nik</td>
+					</tr>
+					<tr>
+						<td>Nama</td>
+						<td th:text="${tua.nama}">nama</td>
+					</tr>
+					<tr class="active">
+						<td>Tanggal Lahir</td>
+						<td th:text="${tua.tanggal_lahir}">tanggalLahir</td>
+					</tr>
+					<tr>
+						<td>Umur</td>
+						<td th:text="${tua.umur}">umur</td>
+					</tr>
+				</table>
+			</div>
 
 
 			<table class="table table-bordered" id="mytable">

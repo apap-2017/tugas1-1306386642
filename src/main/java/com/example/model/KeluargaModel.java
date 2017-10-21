@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KeluargaModel {
-	
+
 	private Long id;
 	private Long idKelurahan;
 	private String nomor_kk;
@@ -23,7 +23,7 @@ public class KeluargaModel {
 	private List<PendudukModel> penduduk;
 	private String NamaKelurahan;
 	private String NamaKecamatan;
-	private String NamaKota;	
+	private String NamaKota;
 	private String KodeKecamatan;
 	private Integer Wafat;
 

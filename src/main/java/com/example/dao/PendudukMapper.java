@@ -69,11 +69,11 @@ public interface PendudukMapper {
 			+ "kelurahan on keluarga.id_kelurahan = kelurahan.id JOIN kecamatan on kelurahan.id_kecamatan = kecamatan.id JOIN "
 			+ "kota ON kecamatan.id_kota = kota.id WHERE keluarga.id_kelurahan = #{idKelurahan}")
 	List<PendudukModel> listPenduduk(@Param("idKelurahan") Long idKelurahan);
-	
+
 	@Select("SELECT DISTINCT nama, nik, tanggal_lahir, (YEAR(CURDATE())-YEAR(tanggal_lahir)) AS umur FROM penduduk JOIN "
 			+ "keluarga on penduduk.id_keluarga = keluarga.id WHERE keluarga.id_kelurahan = #{idKelurahan} ORDER BY umur ASC LIMIT 1")
 	PendudukModel muda(@Param("idKelurahan") Long idKelurahan);
-	
+
 	@Select("SELECT DISTINCT nama, nik, tanggal_lahir, (YEAR(CURDATE())-YEAR(tanggal_lahir)) AS umur FROM penduduk JOIN "
 			+ "keluarga on penduduk.id_keluarga = keluarga.id WHERE keluarga.id_kelurahan = #{idKelurahan} ORDER BY umur DESC LIMIT 1")
 	PendudukModel tua(@Param("idKelurahan") Long idKelurahan);
