@@ -33,5 +33,8 @@ public class PendudukModel {
 	private String KodeKecamatan;
 	private String NKK;
 	private Integer TidakBerlaku;
-	
+	private Long idKota;
+	private Long idKecamatan;
+	private Long idKelurahan;
+	private String umur;
 }

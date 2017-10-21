@@ -3,20 +3,20 @@
 <head>
 <title>View Keluarga</title>
 <link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-		crossorigin="anonymous"></link>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></link>
-	<script
-		src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></link>
+<script
+	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-	<h2 align="center">Preview</h2>
+	<h2 align="center">View</h2>
 	<hr />
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -52,39 +52,43 @@
 			</div>
 
 			<table class="table table-bordered" id="mytable">
-				<tr style="text-align: center" class="active">
-					<td>No</td>
-					<td>Nama Lengkap</td>
-					<td>NIK</td>
-					<td>Jenis Kelamin</td>
-					<td>Tempat Lahir</td>
-					<td>Tanggal Lahir</td>
-					<td>Agama</td>
-					<td>Pekerjaan</td>
-					<td>Status Perkawinan</td>
-					<td>Status Dalam Keluarga</td>
-					<td>Kewarganegaraan</td>
-				</tr>
-				<tr style="text-align: center"
-					th:each="penduduk,iterationStatus:${penduduk}">
-					<td th:text="${iterationStatus.count}">No</td>
-					<td th:text="${penduduk.nama}">No</td>
-					<td th:text="${penduduk.nik}">Nik</td>
-					<td th:switch="${penduduk.jenis_kelamin}">
-						<div th:case="1">Wanita</div>
-						<div th:case="0">Pria</div>
-					</td>
-					<td th:text="${penduduk.tempat_lahir}">tmpt</td>
-					<td th:text="${penduduk.tanggal_lahir}">tnggl</td>
-					<td th:text="${penduduk.agama}">agama</td>
-					<td th:text="${penduduk.pekerjaan}">pkrjaan</td>
-					<td th:text="${penduduk.status_perkawinan}">pkrjaan</td>
-					<td th:text="${penduduk.status_dalam_keluarga}">pkrjaan</td>
-					<td th:switch="${penduduk.is_wni}">
-						<div th:case="1">WNI</div>
-						<div th:case="0">Warga Asing</div>
-					</td>
-				</tr>
+				<thead>
+					<tr style="text-align: center" class="active">
+						<th>No</th>
+						<th>Nama Lengkap</th>
+						<th>NIK</th>
+						<th>Jenis Kelamin</th>
+						<th>Tempat Lahir</th>
+						<th>Tanggal Lahir</th>
+						<th>Agama</th>
+						<th>Pekerjaan</th>
+						<th>Status Perkawinan</th>
+						<th>Status Dalam Keluarga</th>
+						<th>Kewarganegaraan</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="text-align: center"
+						th:each="penduduk,iterationStatus:${penduduk}">
+						<th th:text="${iterationStatus.count}">No</th>
+						<th th:text="${penduduk.nama}">No</th>
+						<th th:text="${penduduk.nik}">Nik</th>
+						<th th:switch="${penduduk.jenis_kelamin}">
+							<div th:case="1">Wanita</div>
+							<div th:case="0">Pria</div>
+						</th>
+						<th th:text="${penduduk.tempat_lahir}">tmpt</th>
+						<th th:text="${penduduk.tanggal_lahir}">tnggl</th>
+						<th th:text="${penduduk.agama}">agama</th>
+						<th th:text="${penduduk.pekerjaan}">pkrjaan</th>
+						<th th:text="${penduduk.status_perkawinan}">pkrjaan</th>
+						<th th:text="${penduduk.status_dalam_keluarga}">pkrjaan</th>
+						<th th:switch="${penduduk.is_wni}">
+							<div th:case="1">WNI</div>
+							<div th:case="0">Warga Asing</div>
+						</th>
+					</tr>
+				</tbody>
 			</table>
 			<br />
 			<button style="margin: auto" class="btn btn-primary"
@@ -95,7 +99,6 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#mytable').DataTable();
-			console.log("haha");
 		});
 		function Backfunction() {
 			location.href = "/keluarga/home"

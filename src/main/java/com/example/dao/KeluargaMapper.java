@@ -45,8 +45,5 @@ public interface KeluargaMapper {
 	@Update("Update keluarga SET nomor_kk = #{nomor_kk}, alamat = #{alamat}, rt = #{rt}, rw = #{rw}, "
 			+ "id_kelurahan = #{id_kelurahan} WHERE nomor_kk = #{nomor_kklama}")
 	void updateKeluarga(KeluargaModel keluarga);
-	
-	@Select("")
-	List<PendudukModel> cekKeluarga(@Param("id_keluarga") String id_keluarga);
 
 }

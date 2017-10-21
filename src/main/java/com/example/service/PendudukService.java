@@ -2,7 +2,6 @@ package com.example.service;
 
 import java.util.List;
 
-import com.example.model.KeluargaModel;
 import com.example.model.PendudukModel;
 
 public interface PendudukService {
@@ -25,4 +24,17 @@ public interface PendudukService {
 	PendudukModel jumlahKeluarga(Long id_keluarga);
 	
 	List<PendudukModel> cekPenduduk(String nomor_kk);
+	
+	List<PendudukModel> listKota();
+	
+	List<PendudukModel> listKecamatan(Long idKota);
+	
+	List<PendudukModel> listKelurahan(Long idKecamatan);
+	
+	List<PendudukModel> listPenduduk(Long idKelurahan);
+	
+	PendudukModel muda(Long idKelurahan);
+	
+	PendudukModel tua(Long idKelurahan);
+	
 }

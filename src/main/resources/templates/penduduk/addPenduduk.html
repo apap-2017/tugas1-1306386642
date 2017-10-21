@@ -33,41 +33,41 @@
 				method="post">
 				<div class="form-group">
 					<label for="nama">Masukkan Nama</label> <input class="form-control"
-						type="text" name="nama"/>
+						type="text" name="nama" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="tempatLahir">Tempat Lahir</label> <input
 						class="form-control" type="text" name="tempat_lahir"
-						/>
+						required="required" />
 				</div>
 				<div class="form-group">
 					<label for="tanggalLahir">Tanggal Lahir</label> <input
-						class="form-control" type="date" name="tanggal_lahir"/>
+						class="form-control" type="date" name="tanggal_lahir" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="golonganDarah">Golongan Darah</label> <select
-						class="form-control" name="golongan_darah">
-						<option th:value="'-'">--Pilih Golongan Darah</option>
-						<option th:value="'A-'">A-</option>
-						<option th:value="'A+'">A+</option>
-						<option th:value="'B-'">B-</option>
-						<option th:value="'B+'">B+</option>
-						<option th:value="'O-'">O-</option>
-						<option th:value="'O+'">O+</option>
-						<option th:value="'AB+'">AB+</option>
+						class="form-control" name="golongan_darah" required="required">
+						<option value="">--Pilih Golongan Darah</option>
+						<option value="A-">A-</option>
+						<option value="A+">A+</option>
+						<option value="B-">B-</option>
+						<option value="B+">B+</option>
+						<option value="O-">O-</option>
+						<option value="O+">O+</option>
+						<option value="AB+">AB+</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="jenisKelamin">Jenis Kelamin</label> <select
-						class="form-control" name="jenis_kelamin">
-						<option th:value="'-'">--Pilih Jenis Kelamin</option>
-						<option th:value="1">Wanita</option>
-						<option th:value="0">Pria</option>
+						class="form-control" name="jenis_kelamin" required="required">
+						<option value="">--Pilih Jenis Kelamin</option>
+						<option value="1">Wanita</option>
+						<option value="0">Pria</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="agama">Agama</label> <input class="form-control"
-						type="text" name="agama"/>
+						type="text" name="agama" required="required" />
 
 				</div>
 				<div class="form-group">
@@ -76,23 +76,24 @@
 				</div>
 				<div class="form-group">
 					<label for="isWNI">Kewarganegaraan</label> <select
-						class="form-control" name="is_wni">
-						<option value="'-'">--Pilih Status Kewarganegaraan</option>
+						class="form-control" name="is_wni" required="required">
+						<option value="">--Pilih Status Kewarganegaraan</option>
 						<option value="1">WNI</option>
 						<option value="0">WNA</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="isWafat">Status Kematian</label>
-						<select class="form-control" name="is_wafat">
-							<option value="'-'">--Pilih Status Kematian</option>
-							<option value="1">Wafat</option>
+						<select class="form-control" name="is_wafat" required="required">
+							<option value="">--Pilih Status Kematian</option>
 							<option value="0">Hidup</option>
+							<option value="1">Wafat</option>
 						</select>
 				</div>
 				<div class="form-group">
-					<label for="statusPerkawinan">Status Perkawinan</label> <select class="form-control" name="status_perkawinan">
-							<option value="'-'">--Pilih Status Perkawinan</option>
+					<label for="statusPerkawinan">Status Perkawinan</label> <select class="form-control" 
+					name="status_perkawinan" required="required">
+							<option value="">--Pilih Status Perkawinan</option>
 							<option value="Belum Kawin">Belum Kawin</option>
 							<option value="Kawin">Kawin</option>
 							<option value="Cerai Mati">Cerai Mati</option>
@@ -100,11 +101,11 @@
 				</div>
 				<div class="form-group">
 					<label for="statusDalamKeluarga">Status Dalam Keluarga</label> <input
-						class="form-control" type="text" name="status_dalam_keluarga"/>
+						class="form-control" type="text" name="status_dalam_keluarga" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="idKeluarga">ID Keluarga</label> <input
-						class="form-control" type="text" name="id_keluarga"/>
+						class="form-control" type="text" name="id_keluarga" required="required" />
 				</div>
 				<button class="btn btn-primary" type="submit" name="action"
 					value="save">Save</button>

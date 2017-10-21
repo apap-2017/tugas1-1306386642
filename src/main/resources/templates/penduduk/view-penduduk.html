@@ -21,7 +21,7 @@
 	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-	<h2 align="center">Preview</h2>
+	<h2 align="center">View</h2>
 	<hr />
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -73,22 +73,22 @@
 					<th>Status Perkawinan</th>
 					<th th:text="${penduduk.status_perkawinan}"></th>
 				</tr>
-				<tr class="active">
+				<tr>
 					<th>Pekerjaan</th>
 					<th th:text="${penduduk.pekerjaan}"></th>
 				</tr>
-				<tr>
+				<tr class="active">
 					<th>Kewarganegaraan</th>
 					<th th:if="${penduduk.is_wni} == 1" th:text='WNI'></th>
 					<th th:if="${penduduk.is_wni} == 0" th:text='WNA'></th>
 				</tr>
-				<tr class="active">
+				<tr>
 					<th>Status Kematian</th>
 					<th th:if="${penduduk.is_wafat} == 0" th:text='Hidup'></th>
 					<th th:if="${penduduk.is_wafat} == 1" th:text='Wafat'></th>
 				</tr>
 			</table>
-			<form action="/penduduk/npm" method="get">
+			<form action="/penduduk/mati" method="get">
 				<button type="submit" id="nik" name="nik" th:value="${penduduk.nik}"
 					style="float: right" class="btn btn-danger">Nonaktifkan</button>
 			</form>

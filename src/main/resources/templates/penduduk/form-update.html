@@ -32,55 +32,55 @@
 			<form th:action="@{/penduduk/ubah/submit}" th:object="${penduduk}"
 				method="post">
 				<input class="form-control" type="hidden" name="nik"
-					th:field="*{nik}" />
+					th:field="*{nik}" required="required" />
 				<div class="form-group">
 					<label for="nama">Masukkan Nama</label> <input class="form-control"
-						type="text" name="nama" th:field="*{nama}" />
+						type="text" name="nama" th:field="*{nama}" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="tempatLahir">Tempat Lahir</label> <input
 						class="form-control" type="text" name="tempat_lahir"
-						th:field="*{tempat_lahir}" />
+						th:field="*{tempat_lahir}" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="tanggalLahir">Tanggal Lahir</label> <input
 						class="form-control" type="date" name="tanggal_lahir"
-						th:field="*{tanggal_lahir}" />
+						th:field="*{tanggal_lahir}" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="golonganDarah">Golongan Darah</label> <select
-						class="form-control" name="golongan_darah">
-						<option th:value="'-'">--Pilih Golongan Darah</option>
-						<option th:value="'A-'" th:selected="*{golongan_darah == 'A-'}">A-</option>
-						<option th:value="'A+'" th:selected="*{golongan_darah == 'A+'}">A+</option>
-						<option th:value="'B-'" th:selected="*{golongan_darah == 'B-'}">B-</option>
-						<option th:value="'B+'" th:selected="*{golongan_darah == 'A+'}">B+</option>
-						<option th:value="'O-'" th:selected="*{golongan_darah == 'O−'}">O-</option>
-						<option th:value="'O+'" th:selected="*{golongan_darah == 'O+'}">O+</option>
-						<option th:value="'AB+'" th:selected="*{golongan_darah == 'AB+'}">AB+</option>
+						class="form-control" name="golongan_darah" required="required" >
+						<option value="">--Pilih Golongan Darah</option>
+						<option value="'A-'" th:selected="*{golongan_darah == 'A-'}">A-</option>
+						<option value="'A+'" th:selected="*{golongan_darah == 'A+'}">A+</option>
+						<option value="'B-'" th:selected="*{golongan_darah == 'B-'}">B-</option>
+						<option value="'B+'" th:selected="*{golongan_darah == 'A+'}">B+</option>
+						<option value="'O-'" th:selected="*{golongan_darah == 'O−'}">O-</option>
+						<option value="'O+'" th:selected="*{golongan_darah == 'O+'}">O+</option>
+						<option value="'AB+'" th:selected="*{golongan_darah == 'AB+'}">AB+</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="jenisKelamin">Jenis Kelamin</label> <select
-						class="form-control" name="jenis_kelamin">
-						<option th:value="'-'">--Pilih Jenis Kelamin</option>
-						<option th:value="1" th:selected="*{jenis_kelamin == 1}">Wanita</option>
-						<option th:value="0" th:selected="*{jenis_kelamin == 0}">Pria</option>
+						class="form-control" name="jenis_kelamin" required="required" >
+						<option value="">--Pilih Jenis Kelamin</option>
+						<option value="1" th:selected="*{jenis_kelamin == 1}">Wanita</option>
+						<option value="0" th:selected="*{jenis_kelamin == 0}">Pria</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="agama">Agama</label> <input class="form-control"
-						type="text" name="agama" th:field="*{agama}" />
+						type="text" name="agama" th:field="*{agama}" required="required" />
 
 				</div>
 				<div class="form-group">
 					<label for="pekerjaan">Pekerjaan</label> <input
 						class="form-control" type="text" name="pekerjaan"
-						th:field="*{pekerjaan}" />
+						th:field="*{pekerjaan}" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="isWNI">Kewarganegaraan</label> <select
-						class="form-control" name="is_wni">
+						class="form-control" name="is_wni" required="required" >
 						<option value="'-'">--Pilih Status Kewarganegaraan</option>
 						<option value="1" th:selected="*{is_wni == 1}">WNI</option>
 						<option value="0" th:selected="*{is_wni == 0}">WNA</option>
@@ -88,7 +88,7 @@
 				</div>
 				<div class="form-group">
 					<label for="isWafat">Status Kematian</label> <select
-						class="form-control" name="is_wafat">
+						class="form-control" name="is_wafat" required="required" >
 						<option value="'-'">--Pilih Status Kematian</option>
 						<option value="0" th:selected="*{is_wafat == 0}">Hidup</option>
 						<option value="1" th:selected="*{is_wafat == 1}">Wafat</option>
@@ -96,7 +96,7 @@
 				</div>
 				<div class="form-group">
 					<label for="statusPerkawinan">Status Perkawinan</label> <select
-						class="form-control" name="status_perkawinan">
+						class="form-control" name="status_perkawinan" required="required" >
 						<option value="'-'">--Pilih Status Perkawinan</option>
 						<option value="Belum Kawin"
 							th:selected="*{status_perkawinan == 'Belum Kawin'}">Belum
@@ -116,7 +116,7 @@
 				<div class="form-group">
 					<label for="idKeluarga">ID Keluarga</label> <input
 						class="form-control" type="text" name="id_keluarga"
-						th:field="*{id_keluarga}" />
+						th:field="*{id_keluarga}" required="required" />
 				</div>
 				<button class="btn btn-primary" type="submit" name="action"
 					value="save">Save</button>
