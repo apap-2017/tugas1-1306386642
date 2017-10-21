@@ -54,6 +54,9 @@ public class PendudukController {
 		if (idKota != null && idKecamatan != null && idKelurahan != null) {
 			List<PendudukModel> viewPenduduk = pendudukService.listPenduduk(idKelurahan);
 			model.addAttribute("penduduk", viewPenduduk);
+			
+			PendudukModel tempatPenduduk = pendudukService.tempatPenduduk(idKelurahan);
+			model.addAttribute("tempat", tempatPenduduk);
 
 			PendudukModel muda = pendudukService.muda(idKelurahan);
 			model.addAttribute("muda", muda);
@@ -235,6 +238,12 @@ public class PendudukController {
 			pendudukService.is_tidak_berlaku(nkk.getNKK());
 		}
 		return "redirect:/penduduk/view?nik=" + nik;
+	}
+	
+	@RequestMapping("/penduduk/delete/{nik}")
+	public String deletePenduduk(@Valid @PathVariable(value = "nik") String nik, Model model) {
+		pendudukService.deletePenduduk(nik);
+		return "penduduk/delete";
 	}
 
 }

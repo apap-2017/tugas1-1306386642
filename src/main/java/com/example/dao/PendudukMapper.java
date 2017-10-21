@@ -2,6 +2,7 @@ package com.example.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -69,6 +70,11 @@ public interface PendudukMapper {
 			+ "kelurahan on keluarga.id_kelurahan = kelurahan.id JOIN kecamatan on kelurahan.id_kecamatan = kecamatan.id JOIN "
 			+ "kota ON kecamatan.id_kota = kota.id WHERE keluarga.id_kelurahan = #{idKelurahan}")
 	List<PendudukModel> listPenduduk(@Param("idKelurahan") Long idKelurahan);
+	
+	@Select("SELECT kelurahan.nama_kelurahan as NamaKelurahan, kecamatan.nama_kecamatan as NamaKecamatan, "
+			+ "kota.nama_kota as NamaKota FROM kelurahan JOIN kecamatan on kelurahan.id_kecamatan = kecamatan.id JOIN "
+			+ "kota ON kecamatan.id_kota = kota.id WHERE kelurahan.id = #{idKelurahan}")
+	PendudukModel tempatPenduduk(@Param("idKelurahan") Long idKelurahan);
 
 	@Select("SELECT DISTINCT nama, nik, tanggal_lahir, (YEAR(CURDATE())-YEAR(tanggal_lahir)) AS umur FROM penduduk JOIN "
 			+ "keluarga on penduduk.id_keluarga = keluarga.id WHERE keluarga.id_kelurahan = #{idKelurahan} ORDER BY umur ASC LIMIT 1")
@@ -77,5 +83,8 @@ public interface PendudukMapper {
 	@Select("SELECT DISTINCT nama, nik, tanggal_lahir, (YEAR(CURDATE())-YEAR(tanggal_lahir)) AS umur FROM penduduk JOIN "
 			+ "keluarga on penduduk.id_keluarga = keluarga.id WHERE keluarga.id_kelurahan = #{idKelurahan} ORDER BY umur DESC LIMIT 1")
 	PendudukModel tua(@Param("idKelurahan") Long idKelurahan);
+	
+	@Delete("DELETE from penduduk where nik = #{nik}")
+	void deletePenduduk(@Param("nik") String nik);
 
 }

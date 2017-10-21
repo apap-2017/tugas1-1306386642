@@ -9,6 +9,9 @@
 	<hr />
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
+			<h5 style="text-align: center"
+				th:text="'Lihat Data Penduduk Di Kota '+${tempat.NamaKota}+', Kecamatan '+${tempat.NamaKecamatan}+', Kelurahan '+${tempat.NamaKelurahan}"></h5>
+			<hr />
 			<div class="col-sm-5" style="display: inline-block">
 
 				<h3 style="text-align: center">Penduduk Termuda</h3>
@@ -53,11 +56,10 @@
 				</table>
 			</div>
 
-
 			<table class="table table-bordered" id="mytable">
 				<thead>
-					<tr style="text-align: center" class="active">
-						<th>No</th>
+					<tr class="active">
+						<th style="text-align: center">No</th>
 						<th>Nama Lengkap</th>
 						<th>NIK</th>
 						<th>Jenis Kelamin</th>
@@ -66,7 +68,7 @@
 				<tbody>
 					<tr style="text-align: center"
 						th:each="penduduk,iterationStatus:${penduduk}">
-						<th th:text="${iterationStatus.count}">No</th>
+						<th style="text-align: center" th:text="${iterationStatus.count}">No</th>
 						<th th:text="${penduduk.nama}">Nama</th>
 						<th th:text="${penduduk.nik}">Nik</th>
 						<th th:switch="${penduduk.jenis_kelamin}">

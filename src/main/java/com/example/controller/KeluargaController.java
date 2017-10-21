@@ -97,7 +97,7 @@ public class KeluargaController {
 			KeluargaModel lastkeluarga = keluargaService.lastKeluarga();
 
 			// 4 digit terakhir
-			if (keluarga.getAlamat().equals(lastkeluarga.getAlamat())) {
+			if (keluarga.getId_kelurahan().equals(lastkeluarga.getId_kelurahan())) {
 				if (today.equals(lastkeluarga.getNomor_kk().substring(6, 12))) {
 					String nilai = lastkeluarga.getNomor_kk().substring(12, 16);
 					Integer value = Integer.parseInt(nilai);
@@ -164,7 +164,7 @@ public class KeluargaController {
 
 			KeluargaModel lastkeluarga = keluargaService.lastKeluarga();
 			// 4 digit terakhir
-			if (keluarga.getAlamat().equals(lastkeluarga.getAlamat())) {
+			if (keluarga.getId_kelurahan().equals(lastkeluarga.getId_kelurahan())) {
 				if (today.equals(lastkeluarga.getNomor_kk().substring(6, 12))) {
 					String nilai = lastkeluarga.getNomor_kk().substring(12, 16);
 					Integer value = Integer.parseInt(nilai);

@@ -32,9 +32,13 @@ public interface PendudukService {
 	List<PendudukModel> listKelurahan(Long idKecamatan);
 
 	List<PendudukModel> listPenduduk(Long idKelurahan);
+	
+	PendudukModel tempatPenduduk(Long idKelurahan);
 
 	PendudukModel muda(Long idKelurahan);
 
 	PendudukModel tua(Long idKelurahan);
+	
+	void deletePenduduk (String nik);
 
 }

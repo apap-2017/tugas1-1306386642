@@ -55,7 +55,5 @@ public class KeluargaServiceDatabase implements KeluargaService {
 	public void updateKeluarga(KeluargaModel keluarga) {
 		// TODO Auto-generated method stub
 		keluargaMapper.updateKeluarga(keluarga);
-
 	}
-
 }

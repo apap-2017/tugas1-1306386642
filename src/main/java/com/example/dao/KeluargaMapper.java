@@ -34,7 +34,7 @@ public interface KeluargaMapper {
 	KeluargaModel nomorID(@Param("NamaKelurahan") String NamaKelurahan, @Param("NamaKecamatan") String NamaKecamatan,
 			@Param("NamaKota") String NamaKota);
 
-	@Select("select nomor_kk, alamat from keluarga ORDER BY id DESC LIMIT 1")
+	@Select("select nomor_kk, alamat, id_kelurahan from keluarga ORDER BY id DESC LIMIT 1")
 	KeluargaModel lastKeluarga();
 
 	@Select("SELECT nomor_kk, alamat, rt, rw, id_kelurahan, is_tidak_berlaku, kelurahan.nama_kelurahan as NamaKelurahan, kecamatan.nama_kecamatan as NamaKecamatan, kota.nama_kota as NamaKota "
@@ -45,5 +45,4 @@ public interface KeluargaMapper {
 	@Update("Update keluarga SET nomor_kk = #{nomor_kk}, alamat = #{alamat}, rt = #{rt}, rw = #{rw}, "
 			+ "id_kelurahan = #{id_kelurahan} WHERE nomor_kk = #{nomor_kklama}")
 	void updateKeluarga(KeluargaModel keluarga);
-
 }

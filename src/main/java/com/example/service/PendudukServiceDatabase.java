@@ -117,4 +117,17 @@ public class PendudukServiceDatabase implements PendudukService {
 		// TODO Auto-generated method stub
 		return pendudukMapper.tua(idKelurahan);
 	}
+
+	@Override
+	public PendudukModel tempatPenduduk(Long idKelurahan) {
+		// TODO Auto-generated method stub
+		return pendudukMapper.tempatPenduduk(idKelurahan);
+	}
+
+	@Override
+	public void deletePenduduk(String nik) {
+		// TODO Auto-generated method stub
+		pendudukMapper.deletePenduduk(nik);
+		
+	}
 }
