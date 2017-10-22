@@ -47,7 +47,10 @@ public interface PendudukMapper {
 
 	@Update("UPDATE keluarga SET is_tidak_berlaku = 1 where nomor_kk = #{nomor_kk}")
 	void is_tidak_berlaku(@Param("nomor_kk") String nomor_kk);
-
+	
+	@Update("UPDATE keluarga SET is_tidak_berlaku = 0 where nomor_kk = #{nomor_kk}")
+	void is_berlaku(@Param("nomor_kk") String nomor_kk);
+	
 	@Select("select DISTINCT keluarga.nomor_kk as NKK, keluarga.is_tidak_berlaku as TidakBerlaku from penduduk join keluarga on penduduk.id_keluarga = keluarga.id where penduduk.id_keluarga = #{id_keluarga}")
 	PendudukModel jumlahKeluarga(@Param("id_keluarga") Long id_keluarga);
 

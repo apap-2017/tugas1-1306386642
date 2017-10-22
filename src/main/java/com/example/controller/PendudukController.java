@@ -181,34 +181,13 @@ public class PendudukController {
 			kodeNIK += tanggalLahir;
 		}
 
-		// 4 digit kode akhir NIK
-		PendudukModel kodeTerakhir = pendudukService.lastNIK();
-		if (penduduk.getTempat_lahir().equals(kodeTerakhir.getTempat_lahir())) {
-			if (penduduk.getTanggal_lahir().equals(kodeTerakhir.getTanggal_lahir())) {
-				if (penduduk.getJenis_kelamin().equals(kodeTerakhir.getJenis_kelamin())) {
-					String nilai = kodeTerakhir.getNik().substring(12, 16);
-					Integer value = Integer.parseInt(nilai);
-					value += 1;
-					String akhir = new DecimalFormat("0000").format(value);
-					kodeNIK += akhir;
-
-				} else {
-					kodeNIK += "0001";
-				}
-
-			} else {
-				kodeNIK += "0001";
-			}
-
-		} else {
-			kodeNIK += "0001";
-		}
-
 		// nik lama
 		model.addAttribute("nik", penduduk.getNik());
+		String nikLama = penduduk.getNik().substring(12, 16);
 
 		// nik baru
 		penduduk.setNiklama(penduduk.getNik());
+		kodeNIK+=nikLama;
 		penduduk.setNik(kodeNIK);
 
 		pendudukService.updatePenduduk(penduduk);
@@ -233,7 +212,7 @@ public class PendudukController {
 			intList.add(berlaku.get(i).getIs_wafat());
 		}
 		if (intList.contains(0)) {
-			nkk.setTidakBerlaku(0);
+			pendudukService.is_berlaku(nkk.getNKK());
 		} else {
 			pendudukService.is_tidak_berlaku(nkk.getNKK());
 		}

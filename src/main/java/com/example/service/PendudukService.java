@@ -20,6 +20,8 @@ public interface PendudukService {
 	void wafat(String nik);
 
 	void is_tidak_berlaku(String nomor_kk);
+	
+	void is_berlaku(String nomor_kk);
 
 	PendudukModel jumlahKeluarga(Long id_keluarga);
 

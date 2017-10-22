@@ -34,13 +34,13 @@
 					<label for="golonganDarah">Golongan Darah</label> <select
 						class="form-control" name="golongan_darah" required="required">
 						<option value="">--Pilih Golongan Darah</option>
-						<option value="'A-'" th:selected="*{golongan_darah == 'A-'}">A-</option>
-						<option value="'A+'" th:selected="*{golongan_darah == 'A+'}">A+</option>
-						<option value="'B-'" th:selected="*{golongan_darah == 'B-'}">B-</option>
-						<option value="'B+'" th:selected="*{golongan_darah == 'A+'}">B+</option>
-						<option value="'O-'" th:selected="*{golongan_darah == 'O−'}">O-</option>
-						<option value="'O+'" th:selected="*{golongan_darah == 'O+'}">O+</option>
-						<option value="'AB+'" th:selected="*{golongan_darah == 'AB+'}">AB+</option>
+						<option value="A-" th:selected="*{golongan_darah == 'A-'}">A-</option>
+						<option value="A+" th:selected="*{golongan_darah == 'A+'}">A+</option>
+						<option value="B-" th:selected="*{golongan_darah == 'B-'}">B-</option>
+						<option value="B+" th:selected="*{golongan_darah == 'A+'}">B+</option>
+						<option value="O-" th:selected="*{golongan_darah == 'O−'}">O-</option>
+						<option value="O+" th:selected="*{golongan_darah == 'O+'}">O+</option>
+						<option value="AB+" th:selected="*{golongan_darah == 'AB+'}">AB+</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -94,7 +94,7 @@
 				<div class="form-group">
 					<label for="statusDalamKeluarga">Status Dalam Keluarga</label> <input
 						class="form-control" type="text" name="status_dalam_keluarga"
-						th:field="*{status_dalam_keluarga}" />
+						th:field="*{status_dalam_keluarga}" required="required"/>
 				</div>
 				<div class="form-group">
 					<label for="idKeluarga">ID Keluarga</label> <input

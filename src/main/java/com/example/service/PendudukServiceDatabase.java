@@ -130,4 +130,10 @@ public class PendudukServiceDatabase implements PendudukService {
 		pendudukMapper.deletePenduduk(nik);
 		
 	}
+
+	@Override
+	public void is_berlaku(String nomor_kk) {
+		// TODO Auto-generated method stub
+		pendudukMapper.is_berlaku(nomor_kk);
+	}
 }
